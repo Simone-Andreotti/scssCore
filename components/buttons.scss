@@ -1,0 +1,64 @@
+@use '../core/base.scss' as *;
+@use '../core/typography' as *;
+@use '../core/functions' as *;
+
+
+.btn{
+  width: fit-content;
+  cursor: pointer;
+  user-select: none;
+
+  &__primary{
+    @extend .btn;
+    @extend .primary__hover;
+
+
+    &:disabled, &.disabled{
+      cursor: not-allowed;
+      pointer-events: none;
+
+    }
+
+    &--small{
+      @extend .btn__primary;
+      
+    }
+  }
+
+  &__outline{
+    @extend .btn;
+    border: 1px solid $primary_color;
+    background-color: transparent;
+    transition: background-color 0.2s ease-in-out;
+    color: $primary_color;
+
+    &:disabled{
+      color: $gray;
+      background-color: $dark_gray;
+    }
+
+    &:hover{
+      background-color: $primary_color;
+      color: $white;
+    }
+
+    &--small{
+      @extend .btn__outline;
+      
+    }
+  }
+}
+
+.primary__hover{
+  padding: 8px 16px;
+  background-color: $primary_color;
+  transition: background-color 0.1s ease-in-out;
+
+  &:hover{
+    background-color: $primary_color_hover;
+  }
+
+  &:active{
+    background-color: $primary_color_active;
+  }
+}

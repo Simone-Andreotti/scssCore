@@ -1,0 +1,36 @@
+// import core
+@use "core/base.scss";
+@use "core/typography.scss";
+@use "core/grid.scss";
+@use "core/reset.scss";
+@use "core/functions.scss";
+
+//import elements
+@use "elements/footer.scss";
+@use "elements/header.scss";
+
+//import components
+@use "components/buttons.scss";
+
+//import pages
+
+
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+  background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #d1d1d1;
+  border-radius: 10px;
+}
+
+
+// example
+.example{
+  @include padding("v", 8, 12);
+  @extend .text__body-m;
+  margin-top: clamp-value(8, 16);
+}

@@ -1,0 +1,86 @@
+@use 'base' as *;
+@use "sass:math";
+
+//calculate the correct clam between 2 values and the global defined mobile and desktop sizes
+@function strip-unit($value) {
+  @return math.div($value, $value * 0 + 1); // Fixed division
+}
+
+@function convert-to-rem($value) {
+  @return math.div(strip-unit($value), 16);
+}
+
+@function to-fixed($value) {
+  @return $value; // SCSS does not support rounding by default, so you can manually handle it if needed.
+}
+
+@function clamp-value($min-size, $max-size, $min-screen: null, $max-screen: null) {
+  // Convert the values to rem
+  $min-size-rem: convert-to-rem($min-size);
+  $max-size-rem: convert-to-rem($max-size);
+  $mobile-rem: convert-to-rem($mobile);
+  @if $min-screen != null {
+    $mobile-rem: convert-to-rem($min-screen);
+  }
+  $desktop-rem: convert-to-rem($maxDesktop);
+  @if $max-screen != null {
+    $desktop-rem: convert-to-rem($max-screen);
+  }
+
+  // Check if any values are invalid
+  @if $min-size-rem == null or $max-size-rem == null or $mobile-rem == null or $desktop-rem == null {
+    @return '';
+  }
+
+  // Calculate slope and intersection point
+  $slope: math.div(($max-size-rem - $min-size-rem) , ($desktop-rem - $mobile-rem));
+  $y-axis-intersection: to-fixed(- $mobile-rem * $slope + $min-size-rem);
+
+  // Return the final clamp value
+  $min: #{$min-size-rem}rem;
+  $max: #{$max-size-rem}rem;
+  $preferred: #{$y-axis-intersection}rem + " + " + #{$slope * 100}vw;
+
+  @return clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+/*
+  margin and padding generators
+  @params:
+    $direction -> v = vertical
+                  h = horizontal
+                  f = full
+                  top, bottom, left right = specific direction
+
+    $min -> minimum value
+    $max -> maximum value
+    $min-screen -> optional, minimum value for clamp
+    $max-screen -> optional, maximum value for clamp
+*/
+@mixin margin($direction, $min, $max, $min-screen: null, $max-screen: null) {
+  @if $direction == "v" {
+    margin-top: clamp-value($min, $max, $min-screen, $max-screen);
+    margin-bottom: clamp-value($min, $max, $min-screen, $max-screen);
+  } @else if $direction == "h" {
+    margin-left: clamp-value($min, $max, $min-screen, $max-screen);
+    margin-right: clamp-value($min, $max, $min-screen, $max-screen);
+  } @else if $direction == "f" {
+    margin: clamp-value($min, $max, $min-screen, $max-screen);
+  } @else {
+    margin-#{$direction}: clamp-value($min, $max, $min-screen, $max-screen);
+  }
+}
+
+@mixin padding($direction, $min, $max, $min-screen: null, $max-screen: null) {
+  @if $direction == "v" {
+    padding-top: clamp-value($min, $max, $min-screen, $max-screen);
+    padding-bottom: clamp-value($min, $max, $min-screen, $max-screen);
+  } @else if $direction == "h" {
+    padding-left: clamp-value($min, $max, $min-screen, $max-screen);
+    padding-right: clamp-value($min, $max, $min-screen, $max-screen);
+  } @else if $direction == "f" {
+    padding: clamp-value($min, $max, $min-screen, $max-screen);
+  } @else {
+    padding-#{$direction}: clamp-value($min, $max, $min-screen, $max-screen);
+  }
+}

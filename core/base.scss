@@ -1,0 +1,52 @@
+$primary_color: #16243E;
+$primary_color_hover: #263F6C;
+$primary_color_active: #335390;
+$brand_color: #D92530;
+$brand_color_hover: #DE3F49;
+$brand_color_active: #FF2330;
+
+$white: #FFFFFF;
+$light_gray: #F5F5F7;
+$gray: #D4D6DA;
+$dark_gray: #6F7888;
+$white-80: rgba(255, 255, 255, 0.8);
+$white-20: rgba(255, 255, 255, 0.2);
+
+$colors:(
+    1: $primary_color,
+    2: $primary_color_hover,
+    3: $primary_color_active,
+    4: $brand_color,
+    5: $brand_color_hover,
+    6: $brand_color_active,
+    7: $white,
+    8: $light_gray,
+    9: $gray,
+    10: $dark_gray,
+    11: $white-80,
+    12: $white-20,
+);
+
+$mobile : 576px;
+$tablet : 1024px;
+$desktop : 1200px;
+$maxDesktop : 1700px;
+
+//numero / font-size px / font-size-mobile px / font-weight / line-height / line-height-mobile / letter-spacing
+$titlesize:(
+    1 80 48 500 normal normal normal,
+    2 70 40 500 normal normal normal,
+    3 48 32 500 normal normal normal,
+    4 40 28 500 normal normal normal,
+    5 32 24 500 normal normal normal,
+    6 24 18 400 normal normal normal,
+);
+
+//numero / nome della classe / font-size px / font-size-mobile px / font-weight / line-height / line-height-mobile / letter-spacing
+$textsize:(
+    1 "xl"   24 20 500 normal normal normal,
+    2 "l"    18 16 600 normal normal normal,
+    3 "m"    16 16 400 normal normal normal,
+    4 "s"    14 14 500 normal normal normal,
+    5 "xs"   12 12 500 normal normal normal,
+);

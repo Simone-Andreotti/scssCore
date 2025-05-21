@@ -1,0 +1,167 @@
+@use 'base' as *;
+@use '../core/functions' as *;
+@use "sass:color";
+
+//import archivio variable font font file in ttf from assets folder
+// @font-face {
+//     font-family: "Archivo";
+//     src: url("../assets/fonts/Archivo-VariableFont_wdth.ttf") format("truetype");
+//     font-weight: 1 999;
+//     font-style: normal;
+//     font-display: swap;
+// }
+
+// @font-face {
+//     font-family: "Monserrat";
+//     src: url("../assets/fonts/Montserrat-VariableFont_wght.ttf") format("truetype");
+//     font-weight: 1 999;
+//     font-style: normal;
+//     font-display: swap;
+// }
+
+//@import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+$titleFont: "sans-serif", sans-serif; 
+
+//@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+$font: "sans-serif", sans-serif;
+
+* {
+    font-family: $font;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+//class generator for all sizes in base.scss file for body text
+@each $number, $name, $size, $mobileSize, $weight, $height, $mobileHeight, $spacing in  $textsize{
+    .text__body-#{$name}{
+        font-size: clamp-value($mobileSize, $size);
+        font-weight: $weight;
+        @if $mobileHeight != "normal" {
+            line-height: clamp-value($mobileHeight, $height);
+        } @else {
+            line-height: $height;
+        }
+        letter-spacing: $spacing;
+
+        font-family: $font;
+        color:  $primary_color;
+    }
+}
+
+//class generator for all sizes in base.scss file for title text
+@each $number, $size, $mobileSize, $weight, $height, $mobileHeight, $spacing in  $titlesize{
+    h#{$number}{
+        font-size: clamp-value($mobileSize, $size);
+        font-weight: $weight;
+        @if $mobileHeight != "normal" {
+            line-height: clamp-value($mobileHeight, $height);
+        } @else {
+            line-height: $height;
+        }
+        letter-spacing: $spacing;
+
+        font-family: $titleFont;
+        color:  $primary_color;
+    }
+
+    .text__title-#{$number}{
+        font-size: clamp-value($mobileSize, $size);
+        font-weight: $weight;
+        @if $mobileHeight != "normal" {
+            line-height: clamp-value($mobileHeight, $height);
+        } @else {
+            line-height: $height;
+        }
+        letter-spacing: $spacing;
+
+        font-family: $titleFont;
+        color:  $primary_color;
+    }
+}
+
+//class generator for all colors in base.scss file
+@each $name, $color in  $colors{
+    .text__color-#{$name}{
+        color: $color;
+    
+        a:hover{
+            color: color.adjust($color, $lightness: -15%)
+        }
+    }
+}
+
+@each $name, $color in  $colors{
+    .mobile-text__color-#{$name}{
+
+        @media only screen and (max-width: 768px){
+            color: $color;
+        
+            a:hover{
+                color: color.adjust($color, $lightness: -15%)
+            }
+        }
+    }
+}
+
+.text__align{
+    &-center{
+        text-align: center;
+    }
+    &-right{
+        text-align: right;
+    }
+    &-left{
+        text-align: left;
+    }
+}
+
+.text__align-mobile{
+    @media(max-width: 768px){
+        &-center{
+            text-align: center;
+        }
+        &-right{
+            text-align: right;
+        }
+        &-left{
+            text-align: left;
+        }
+    }
+}
+
+.uppercase{
+    text-transform: uppercase;
+}
+
+.weight-900{
+    font-weight: 900;
+}
+
+.weight-800{
+    font-weight: 800;
+}
+
+.weight-700{
+    font-weight: 700;
+}
+
+.weight-600{
+    font-weight: 600;
+}
+
+.weight-400{
+    font-weight: 400;
+}
+
+.weight-300{
+    font-weight: 300;
+}
+
+.weight-200{
+    font-weight: 200;
+}
+
+.weight-100{
+    font-weight: 100;
+}
