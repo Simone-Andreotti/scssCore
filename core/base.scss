@@ -28,25 +28,28 @@ $colors:(
 );
 
 $mobile : 576px;
-$tablet : 1024px;
+$tablet : 959px;
 $desktop : 1200px;
 $maxDesktop : 1700px;
 
-//numero / font-size px / font-size-mobile px / font-weight / line-height / line-height-mobile / letter-spacing
+//numero / font-size px / font-size-mobile px / font-weight/ font-weight mobile / line-height / line-height-mobile / letter-spacing
 $titlesize:(
-    1 80 48 500 normal normal normal,
-    2 70 40 500 normal normal normal,
-    3 48 32 500 normal normal normal,
-    4 40 28 500 normal normal normal,
-    5 32 24 500 normal normal normal,
-    6 24 18 400 normal normal normal,
+    1 250 80 200 275 normal normal normal,
+    2 200 60 500 500 normal normal normal,
+    3 200 60 200 275 normal normal normal,
+    4 80 40 200 300 normal normal normal,
+    5 60 24 300 500 normal normal normal,
+    6 40 18 500 500 normal normal normal,
 );
 
-//numero / nome della classe / font-size px / font-size-mobile px / font-weight / line-height / line-height-mobile / letter-spacing
+//numero / nome della classe / font-size px / font-size-mobile px / font-weight / font-weight mobile / line-height / line-height-mobile / letter-spacing
 $textsize:(
-    1 "xl"   24 20 500 normal normal normal,
-    2 "l"    18 16 600 normal normal normal,
-    3 "m"    16 16 400 normal normal normal,
-    4 "s"    14 14 500 normal normal normal,
-    5 "xs"   12 12 500 normal normal normal,
+    1 "xl"      48 40 200 200 normal normal normal,
+    2 "l-m"     24 20 500 500 normal normal normal,
+    3 "l"       24 20 300 200 normal normal normal,
+    4 "s"       18 16 300 200 normal normal normal,
+    5 "cta-l"   20 16 300 300 normal normal 0.8px,
+    6 "cta-s"   16 14 500 500 1.1 normal 2.08px,
+    7 "tag"     18 18 300 300 0.9 normal 3px,
+    8 "foot"    12 12 300 300 normal normal normal,
 );

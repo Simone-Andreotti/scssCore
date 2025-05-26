@@ -33,7 +33,7 @@ $font: "sans-serif", sans-serif;
 }
 
 //class generator for all sizes in base.scss file for body text
-@each $number, $name, $size, $mobileSize, $weight, $height, $mobileHeight, $spacing in  $textsize{
+@each $number, $name, $size, $mobileSize, $weight, $mobileWeight, $height, $mobileHeight, $spacing in  $textsize{
     .text__body-#{$name}{
         font-size: clamp-value($mobileSize, $size);
         font-weight: $weight;
@@ -46,11 +46,15 @@ $font: "sans-serif", sans-serif;
 
         font-family: $font;
         color:  $primary_color;
+
+        @media only screen and (max-width: $tablet) {
+            font-weight: $mobileWeight;
+        }
     }
 }
 
 //class generator for all sizes in base.scss file for title text
-@each $number, $size, $mobileSize, $weight, $height, $mobileHeight, $spacing in  $titlesize{
+@each $number, $size, $mobileSize, $weight, $mobileWeight, $height, $mobileHeight, $spacing in  $titlesize{
     h#{$number}{
         font-size: clamp-value($mobileSize, $size);
         font-weight: $weight;
@@ -63,6 +67,10 @@ $font: "sans-serif", sans-serif;
 
         font-family: $titleFont;
         color:  $primary_color;
+
+        @media only screen and (max-width: $tablet) {
+            font-weight: $mobileWeight;
+        }
     }
 
     .text__title-#{$number}{
@@ -77,6 +85,10 @@ $font: "sans-serif", sans-serif;
 
         font-family: $titleFont;
         color:  $primary_color;
+
+        @media only screen and (max-width: $tablet) {
+            font-weight: $mobileWeight;
+        }
     }
 }
 
