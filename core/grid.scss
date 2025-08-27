@@ -1,7 +1,8 @@
 @use 'base' as *;
 
-body{
+body, html{
   overflow-x: clip;
+  max-width: 100vw;
 }
 
 .no-overflow{
@@ -12,7 +13,7 @@ body{
   display: grid;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: auto;
-  gap: 32px;
+  gap: 24px;
   grid-auto-flow: row;
 
   @media (max-width: $tablet){
@@ -28,75 +29,81 @@ body{
   }
 }
 
-.width-limit{
+$grid-widths: (
+  768: 708px,
+  992: 915px,
+  1200: 1106px,
+  1300: 1200px,
+  1400: 1290px,
+  1500: 1382px,
+  1600: 1476px,
+  1700: 1568px
+);
+
+.width-limit {
   width: calc(100% - 32px);
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 
-  @media (min-width: $mobile){
+  @media (min-width: $mobile) {
     width: calc(100% - 48px);
+  }
 
-      @media (min-width: $tablet){
-          max-width: 720px;
-
-          @media (min-width: 992px){
-              max-width: 960px;
-
-              @media (min-width: 1200px){
-                  max-width: 1140px;
-                  
-                  @media (min-width: 1400px){
-                      max-width: 1200px;
-
-                      @media (min-width: 1600px){
-                        max-width: 1400px;
-
-                        @media (min-width: 1700px){
-                          max-width: 1520px;
-                        }
-                      }
-                  }
-              } 
-          }
-      }
+  @each $breakpoint, $max in $grid-widths {
+    @media (min-width: #{$breakpoint}px) {
+      max-width: $max;
+    }
   }
 }
 
-.width-limit-large{
+$grid-widths-large: (
+  768: 760px,
+  992: 1020px,
+  1200: 1220px,
+  1300: 1260px,
+  1400: 1360px,
+  1500: 1440px,
+  1600: 1536px,
+  1700: 1620px
+);
+
+.width-limit-large {
   width: calc(100% - 32px);
-  margin-right: auto;
-  margin-left: auto;
+  margin: 0 auto;
 
-  @media (min-width: $mobile){
+  @media (min-width: $mobile) {
     width: calc(100% - 48px);
+  }
 
-      @media (min-width: $tablet){
-          max-width: 720px;
+  @each $breakpoint, $max in $grid-widths-large {
+    @media (min-width: #{$breakpoint}px) {
+      max-width: $max;
+    }
+  }
+}
 
-          @media (min-width: 992px){
-              max-width: 960px;
+$grid-widths-small: (
+  768: 708px,
+  992: 870px,
+  1200: 1050px,
+  1300: 1140px,
+  1400: 1226px,
+  1500: 1310px,
+  1600: 1400px,
+  1700: 1488px
+);
 
-              @media (min-width: 1200px){
-                  max-width: 1140px;
-                  
-                  @media (min-width: 1400px){
-                      max-width: 1300px;
+.width-limit-small {
+  width: calc(100% - 32px);
+  margin: 0 auto;
 
-                      @media (min-width: 1600px){
-                        max-width: 1500px;
+  @media (min-width: $mobile) {
+    width: calc(100% - 48px);
+  }
 
-                        @media (min-width: 1700px){
-                          max-width: 1600px;
-
-                          @media (min-width: 1850px){
-                            max-width: 1700px;
-                          }
-                        }
-                      }
-                  }
-              } 
-          }
-      }
+  @each $breakpoint, $max in $grid-widths-small {
+    @media (min-width: #{$breakpoint}px) {
+      max-width: $max;
+    }
   }
 }
 
